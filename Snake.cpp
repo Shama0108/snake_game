@@ -30,6 +30,10 @@ bool Snake::isAlive() const{
     return alive;
 }
 
+bool Snake::didGrow(){
+    if
+}
+
 void Snake::move(){
     for(int i = body.size() -1; i>0; --i){
         body[i].setPosition(body[i-1].getPosition());
