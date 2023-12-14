@@ -5,6 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "Food.h"
 
 class Snake{
     private:
@@ -23,10 +24,12 @@ class Snake{
 
     public:
     Snake(sf::Vector2f startPosition, int initialSize, sf::Color color);
+    Snake();
     bool isAlive() const;
     void move();
     void grow();
-    void checkCollision(const Food &food);
+    void checkCollision( Food &food);
+   void setDirection( const sf::Vector2f& newDirection);
     void render(sf::RenderWindow &window);
 };
 

@@ -5,13 +5,16 @@ Food::Food(){
     foodSize = 10.0f;
     position = sf::Vector2f(0.0f, 0.0f);
 
-    respwan();
+    respawn();
 }
 
 sf::Vector2f Food::getPosition() const{
     return position;
 }
 
+float Food::getFoodSize(){
+    return foodSize;
+}
 void Food::respawn(){
 
     //we going to pick a random number in the range of 0-800 minus 10 after dividing the random number by the range to 

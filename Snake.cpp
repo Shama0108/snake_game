@@ -27,12 +27,18 @@ Snake::Snake(sf::Vector2f startPosition, int initialSize, sf::Color color){
 }
 
 bool Snake::isAlive() const{
-    return alive;
+    return Alive;
 }
 
-bool Snake::didGrow(){
-    if
+Snake::Snake() : direction(0.0f, 0.0f), speed(1.0f), size(1), color(sf::Color::White), Alive(true) {
+    // Additional initialization logic for the default constructor
+    // For example, initialize the body vector with a default segment
+    sf::RectangleShape segment(sf::Vector2f(10.0f, 10.0f));
+    segment.setFillColor(color);
+    body.push_back(segment);
 }
+
+
 
 void Snake::move(){
     for(int i = body.size() -1; i>0; --i){
@@ -51,25 +57,29 @@ void Snake::grow(){
 
 }
 
-void Snake::checkCollision(const Food &food){
+void Snake::setDirection(const sf::Vector2f &newDirection){
+    direction = newDirection;
+}
+
+void Snake::checkCollision( Food &food){
 
     //does body collide with borders
-    if (body[0].getPosition().x < 0 || body[0].getPosition().x >= windowWidth || body[0].getPosition().y < 0 || body[0].getPosition().y >= windowHeight) {
-        alive = false;  // Snake collided with the walls
+    if (body[0].getPosition().x < 0 || body[0].getPosition().x >= 800 || body[0].getPosition().y < 0 || body[0].getPosition().y >= 600) {
+        Alive = false;  // Snake collided with the walls
         return;
     }
 
-    //does body collide with 
-    for(int i = 1; i<body.size; ++i){
+    //does body collide with itself
+    for(int i = 1; i<body.size(); ++i){
 
         //globalBounds checks if the globalbounds of the head intersects with the block of another body segment
     if(body[0].getGlobalBounds().intersects(body[i].getGlobalBounds())){
-        alive = false;
+        Alive = false;
         return;
     }
     }
 
-    if(body[0].getGlobalBounds().intersects(sf::FloatRect(food.getPosition(), sf::Vector2f(food.foodSize, food.foodSize)))){
+    if(body[0].getGlobalBounds().intersects(sf::FloatRect(food.getPosition(), sf::Vector2f(food.getFoodSize(), food.getFoodSize())))){
         grow();
         food.respawn();
     }

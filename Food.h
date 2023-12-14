@@ -13,6 +13,8 @@ class Food{
         Food();
         void respawn();
         void render(sf::RenderWindow &window);
+        float getFoodSize();
+        
         sf::Vector2f getPosition() const;
 
 };

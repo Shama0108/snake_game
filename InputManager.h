@@ -14,4 +14,5 @@ class InputManager{
         bool isKeyPressed(sf::Keyboard::Key key) const; //sf::Keyboard provides a set of static constants for various keys
         // to check if a certain key is pressed: sf::Keyboard::isKeyPressed(sf::Keyboard::A)
         //will be used to direct the snake
+        void update();
 };
